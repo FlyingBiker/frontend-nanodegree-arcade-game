@@ -16,14 +16,14 @@ var Enemy = function(locy) {
     this.speed = this.howFast();
 
     return this;
-}
+};
 
 //Randomly generate enemy speed
 //Found this at http://www.javascriptkit.com/javatutors/randomnum.shtml
 Enemy.prototype.howFast = function() {
     var speed = Math.floor(Math.random()*150 + 250);
     return speed;
-}
+};
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -56,12 +56,12 @@ Enemy.prototype.update = function(dt) {
         player.x = 201;
         player.y = 405;
     }
-}
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -76,7 +76,7 @@ var Player = function(locx, locy){
     this.moveY = 0;
 
     return this;
-}
+};
 
 // Move player based on inputs
 Player.prototype.update = function() {
@@ -95,17 +95,18 @@ Player.prototype.update = function() {
         this.y = 405;
     }
     else if(this.y < 1){
-        this.y = -5;
+        player.x = 201;
+        player.y = 405;
     }
 
     this.moveX = 0;
     this.moveY = 0;
-}
+};
 
 // Draw the player
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // Check if up, down, left or right arrows keys were pressed
 Player.prototype.handleInput = function(move) {
@@ -122,7 +123,7 @@ Player.prototype.handleInput = function(move) {
     else if(move === "left"){
         this.moveX = -100;
     }
-}
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -130,7 +131,7 @@ Player.prototype.handleInput = function(move) {
 
 var allEnemies = [];
 
-for(enemyId = 0; enemyId < 3; enemyId++) {
+for(var enemyId = 0; enemyId < 3; enemyId++) {
     allEnemies.push(new Enemy(enemyId));
 }
 
